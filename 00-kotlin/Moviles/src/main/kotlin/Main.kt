@@ -1,4 +1,5 @@
 import java.util.*
+import kotlin.collections.ArrayList
 
 fun main(args: Array<String>) {
     println("Hello World!")
@@ -45,6 +46,35 @@ fun main(args: Array<String>) {
     calcularSueldo(10.00, 12.00, 20.00)
     calcularSueldo(10.00, bonoEspecial = 20.00) // Named Parameters
     calcularSueldo(bonoEspecial = 20.00, sueldo = 10.00, tasa = 14.00) //  Parametros nombrados
+
+    val sumaUno = Suma(1,1)
+    val sumaDos = Suma(null, 1)
+    val sumaTres = Suma(1, null)
+    val sumaCuatro = Suma(null, null)
+    sumaUno.sumar()
+    sumaDos.sumar()
+    sumaTres.sumar()
+    sumaCuatro.sumar()
+    println(Suma.pi)
+    println(Suma.elevarAlCuadrado(2))
+    println(Suma.historialSumas)
+
+    // ARREGLOS
+
+    // Tipos de Arreglos
+
+    // Arreglo Estatico
+    val arregloEstatico: Array<Int> = arrayOf<Int>(1, 2, 3)
+    println(arregloEstatico)
+
+    // Arreglo Dinámicos
+    val arregloDinamico: ArrayList<Int> = arrayListOf<Int>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+
+
+
+
+
 }
 
 abstract class NumerosJava{
@@ -77,6 +107,65 @@ abstract class Numeros( // Constructor PRIMARIO
         println("Inicializando")
     }
 }
+
+class Suma( // Constructor Primario Suma
+    unoParametro: Int, // Parametro
+    dosParametro: Int, // Parametro
+): Numeros(unoParametro, dosParametro){ // Extendiendo y mandando los parametros (super)
+    init{ // Bloque codigo constructor primario
+        this.numeroUno
+        this.numeroDos
+    }
+    constructor( // Segundo constructor
+        uno: Int?, // Parametros
+        dos: Int // Parametros
+    ):this (
+        if(uno == null) 0 else uno,
+        dos
+    )
+    constructor( // Tercer constructor
+        uno: Int, // Parametros
+        dos: Int? // Parametros
+    ):this(
+        uno,
+        if(dos == null) 0 else dos,
+    )
+
+    constructor( // cuarto constructor
+        uno: Int?, // Parametros
+        dos: Int? // Parametros
+    ):this (
+        if(uno == null) 0 else uno,
+        if(dos == null) 0 else dos,
+    )
+    public fun  sumar(): Int{
+        val total = numeroUno + numeroDos
+        agregarHistorial(total) // this.agregarHistorial(total)
+        return total
+    }
+    companion object { // Atributos y metodos "Compartidos" Singletons o Static de esta clase
+        // Todas las intstancias de esta clase comparten estos atributos y metodos
+        // dentro del companion Object
+        val pi = 3.14
+        fun elevarAlCuadrado(num: Int): Int{
+            return num * num
+        }
+        val historialSumas = ArrayList<Int>()
+        fun agregarHistorial(valorNuevaSuma: Int){
+            historialSumas.add(valorNuevaSuma)
+        }
+
+    }
+
+
+}
+
+
+
+
+
+
+
 
 
 // void -> Unit
