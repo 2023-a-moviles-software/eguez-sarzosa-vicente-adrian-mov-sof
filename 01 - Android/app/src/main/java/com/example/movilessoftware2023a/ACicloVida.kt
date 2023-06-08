@@ -9,12 +9,4 @@ class ACicloVida : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_aciclo_vida)
     }
-
-    fun irActividad(
-        clase: Class<*>
-    ){
-        val intent = Intent(this, clase)
-        startActivity(intent)
-        // this.startActivity()
-    }
 }
