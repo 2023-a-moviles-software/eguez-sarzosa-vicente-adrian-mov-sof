@@ -23,6 +23,7 @@ class ESqliteHelperEntrenador(
                     descripcion VARCHAR(50)
                 )
             """.trimIndent()
+        db?.execSQL(scriptSQLCrearTablaEntrenador)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?,
@@ -112,7 +113,7 @@ class ESqliteHelperEntrenador(
         val arreglo = arrayListOf<BEntrenador>()
         if(existeUsuario){
             do{
-                val id= resultadoConsultaLectura.getInt(0) // Indice 0
+                val id = resultadoConsultaLectura.getInt(0) // Indice 0
                 val nombre = resultadoConsultaLectura.getString(1)
                 val descripcion = resultadoConsultaLectura.getString(2)
                 if(id != null){
